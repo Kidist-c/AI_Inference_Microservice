@@ -1,14 +1,9 @@
-version: "3.9"
-
 services:
-  grpc-server-1:
+  grpc-server:
     build: ./server
-
-  grpc-server-2:
-    build: ./server
-
-  grpc-server-3:
-    build: ./server
+    container_name: grpc-server
+    ports:
+      - "50051:50051"
 
   nginx:
     image: nginx:latest
@@ -17,6 +12,4 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - grpc-server-1
-      - grpc-server-2
-      - grpc-server-3
+      - grpc-server
