@@ -2,15 +2,31 @@ syntax = "proto3";
 
 package ai;
 
-// ----------- Messages -----------
+service AIInference {
+  rpc AnalyzeSentiment (SentimentRequest) returns (SentimentResponse);
 
-message TextRequest {
+  rpc GenerateStream (GenerationRequest) returns (stream TokenResponse);
+
+  rpc SummarizeStream (stream TextChunk) returns (SummaryResponse);
+
+  rpc Chat (stream ChatMessage) returns (stream ChatMessage);
+}
+
+message SentimentRequest {
   string text = 1;
 }
 
 message SentimentResponse {
-  string label = 1;        // POSITIVE / NEGATIVE / NEUTRAL
-  float confidence = 2;    // 0.0 - 1.0
+  string label = 1;
+  float confidence = 2;
+}
+
+message GenerationRequest {
+  string prompt = 1;
+}
+
+message TokenResponse {
+  string token = 1;
 }
 
 message TextChunk {
@@ -22,23 +38,6 @@ message SummaryResponse {
 }
 
 message ChatMessage {
-  string role = 1;   // "user" or "assistant"
+  string role = 1;
   string content = 2;
-}
-
-// ----------- Service -----------
-
-service AIInference {
-
-  // : Unary RPC
-  rpc AnalyzeSentiment (TextRequest) returns (SentimentResponse);
-
-  // : Server Streaming
-  rpc GenerateStream (TextRequest) returns (stream TextChunk);
-
-  // : Client Streaming
-  rpc SummarizeStream (stream TextChunk) returns (SummaryResponse);
-
-  // : Bidirectional Streaming
-  rpc ChatStream (stream ChatMessage) returns (stream ChatMessage);
 }
