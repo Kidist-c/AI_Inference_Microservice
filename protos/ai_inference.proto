@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package ai;
+
+// ----------- Messages -----------
+
+message TextRequest {
+  string text = 1;
+}
+
+message SentimentResponse {
+  string label = 1;        // POSITIVE / NEGATIVE / NEUTRAL
+  float confidence = 2;    // 0.0 - 1.0
+}
+
+message TextChunk {
+  string chunk = 1;
+}
+
+message SummaryResponse {
+  string summary = 1;
+}
+
+message ChatMessage {
+  string role = 1;   // "user" or "assistant"
+  string content = 2;
+}
+
+// ----------- Service -----------
+
+service AIInference {
+
+  // : Unary RPC
+  rpc AnalyzeSentiment (TextRequest) returns (SentimentResponse);
+
+  // : Server Streaming
+  rpc GenerateStream (TextRequest) returns (stream TextChunk);
+
+  // : Client Streaming
+  rpc SummarizeStream (stream TextChunk) returns (SummaryResponse);
+
+  // : Bidirectional Streaming
+  rpc ChatStream (stream ChatMessage) returns (stream ChatMessage);
+}
