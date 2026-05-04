@@ -1,0 +1,2 @@
+import ai_inference_pb2
+import ai_inference_pb2_grpc
