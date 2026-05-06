@@ -196,9 +196,9 @@ The test of uniry real time screenshot
 Task 4 – Server-Streaming:Batch summerization
 The test of uniry Batch summerization screenshot
 ![Batch](images/summery.png)
-******************\*\*******************\_\_\_\_******************\*\*******************-
+********\*\*********\*\*********\*\*********\_\_\_\_********\*\*********\*\*********\*\*********-
 Task 5 – Server-Streaming:Bidirectional streaming
 The test of uniry screenshot
-![Biderctional](images/summery.png)
+![Biderctional](images/Bidirectional.png)
 
 ---
