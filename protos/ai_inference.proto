@@ -1,36 +1,28 @@
 syntax = "proto3";
 
-package ai;
+package ai_inference;
 
-service AIInference {
-  rpc AnalyzeSentiment (SentimentRequest) returns (SentimentResponse);
-
-  rpc GenerateStream (GenerationRequest) returns (stream TokenResponse);
-
-  rpc SummarizeStream (stream TextChunk) returns (SummaryResponse);
-
-  rpc Chat (stream ChatMessage) returns (stream ChatMessage);
-}
+// ─── Request / Response Messages ───────────────────────────────────────────
 
 message SentimentRequest {
   string text = 1;
 }
 
 message SentimentResponse {
-  string label = 1;
-  float confidence = 2;
+  string label      = 1;   // e.g. "POSITIVE", "NEGATIVE", "NEUTRAL"
+  float  confidence = 2;   // 0.0 – 1.0
 }
 
-message GenerationRequest {
+message GenerateRequest {
   string prompt = 1;
 }
 
-message TokenResponse {
-  string token = 1;
+message GenerateChunk {
+  string token = 1;         // one streamed token / word-piece
 }
 
 message TextChunk {
-  string chunk = 1;
+  string content = 1;       // a piece of a large document
 }
 
 message SummaryResponse {
@@ -38,6 +30,23 @@ message SummaryResponse {
 }
 
 message ChatMessage {
-  string role = 1;
+  string role    = 1;       // "user" or "assistant"
   string content = 2;
+}
+
+// ─── Service Definition ────────────────────────────────────────────────────
+
+service AIInference {
+
+  //  – Unary: send one text, get one sentiment result
+  rpc AnalyzeSentiment (SentimentRequest) returns (SentimentResponse);
+
+  //  – Server-streaming: send one prompt, get a stream of tokens
+  rpc GenerateText (GenerateRequest) returns (stream GenerateChunk);
+
+  // – Client-streaming: send many text chunks, get one summary
+  rpc SummarizeDocument (stream TextChunk) returns (SummaryResponse);
+
+  //  – Bidirectional-streaming: live chat
+  rpc LiveChat (stream ChatMessage) returns (stream ChatMessage);
 }
