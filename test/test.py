@@ -1,2 +1,2 @@
-import ai_inference_pb2
-import ai_inference_pb2_grpc
+import protos.ai_inference_pb2 as ai_inference_pb2
+import protos.ai_inference_pb2_grpc as ai_inference_pb2_grpc

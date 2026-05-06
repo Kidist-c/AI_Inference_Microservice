@@ -14,8 +14,8 @@ import grpc
 import httpx
 from grpc import aio
 
-import ai_inference_pb2 as pb2
-import ai_inference_pb2_grpc as pb2_grpc
+import protos.ai_inference_pb2 as pb2
+import protos.ai_inference_pb2_grpc as pb2_grpc
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [SERVER] %(message)s")
 log = logging.getLogger(__name__)
