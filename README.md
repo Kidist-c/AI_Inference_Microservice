@@ -183,7 +183,7 @@ Test for the output screenshots
 Task 2 – Unary: Sentiment Analysis
 ────────────────────────────────────────────────────────────
 The test of uniry sentiment screenshot
-![summery](images/summery.png)
+![summery](images/real_time.png)
 
 ────────────────────────────────────────────────────────────
 Task 3 – Server-Streaming: Real-time Generation
@@ -196,7 +196,7 @@ The test of uniry real time screenshot
 Task 4 – Server-Streaming:Batch summerization
 The test of uniry Batch summerization screenshot
 ![Batch](images/summery.png)
-********\*\*********\*\*********\*\*********\_\_\_\_********\*\*********\*\*********\*\*********-
+**\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***-
 Task 5 – Server-Streaming:Bidirectional streaming
 The test of uniry screenshot
 ![Biderctional](images/Bidirectional.png)
