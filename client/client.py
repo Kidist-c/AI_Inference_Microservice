@@ -6,14 +6,18 @@ Connects to Nginx load-balancer and exercises all four RPC types.
 
 import asyncio
 import sys
+import os
 
 import grpc
 from grpc import aio
 
 # Adjust this path if running from repo root
 
-import ai_inference_pb2 as pb2
-import ai_inference_pb2_grpc as pb2_grpc
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, BASE_DIR)
+import protos.ai_inference_pb2 as pb2
+import protos.ai_inference_pb2_grpc as pb2_grpc
 
 LOAD_BALANCER = "localhost:80"   # Nginx front-end
 

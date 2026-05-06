@@ -9,11 +9,12 @@ import logging
 import os
 import re
 import time
-
+import sys
 import grpc
 import httpx
 from grpc import aio
-
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, BASE_DIR)
 import protos.ai_inference_pb2 as pb2
 import protos.ai_inference_pb2_grpc as pb2_grpc
 
