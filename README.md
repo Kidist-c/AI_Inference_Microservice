@@ -2,23 +2,6 @@
 
 A fully-containerised AI inference service demonstrating all four gRPC communication patterns, load-balanced through Nginx, backed by a local Ollama LLM.
 
-```
-┌────────────────────────────────────────────────────────────┐
-│  CLI Client  (localhost)                                    │
-│       │                                                     │
-│       ▼  HTTP/2 on port 80                                  │
-│  ┌─────────────┐                                            │
-│  │    Nginx    │  Layer-7 load balancer (grpc_pass)         │
-│  └──────┬──────┘                                            │
-│         │  Round-robin across 3 instances                   │
-│  ┌──────┴───────────────────────────┐                       │
-│  │  server-1  server-2  server-3    │  (port 50051 each)    │
-│  └──────────────────────────────────┘                       │
-│         │  HTTP to host machine                             │
-│  ┌──────┴──────┐                                            │
-│  │  Ollama LLM │  tinyllama (runs on your host)             │
-│  └─────────────┘                                            │
-└────────────────────────────────────────────────────────────┘
 ## Project Structure
 
 ```
@@ -41,7 +24,7 @@ AI_INference-microservice/
 
 ```
 
-```
+`````
 
 ---
 
@@ -76,7 +59,7 @@ ollama pull tinyllama
 
 # Start the Ollama server (leave this terminal open)
 ollama serve
-````
+`````
 
 Verify it works:
 
